@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: punitxd-getting-started-app
+  namespace: kairo-punitxd-getting-started-app
+  labels:
+    app: punitxd-getting-started-app
+    app.kubernetes.io/managed-by: kairo
+spec:
+  # cluster-internal only: all outside traffic comes in through Traefik's
+  # Ingress, so request metrics are always counted
+  type: ClusterIP
+  selector:
+    app: punitxd-getting-started-app
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3000
